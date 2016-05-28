@@ -5,7 +5,7 @@
 ## Login   <guerin_q@epitech.net>
 ## 
 ## Started on  Sat May 28 10:20:51 2016 Quentin Guerin
-## Last update Sat May 28 15:15:08 2016 Quentin Guerin
+## Last update Sat May 28 18:10:27 2016 Quentin Guerin
 ##
 
 AR			= ar
@@ -30,6 +30,7 @@ NAME			= ../libsdl_context.a
 SRCS			= ./srcs/init.c			\
 			  ./srcs/release.c		\
 			  ./srcs/set_map_size.c		\
+			  ./srcs/windowevent.c		\
 
 OBJS			= $(SRCS:.c=.o)
 

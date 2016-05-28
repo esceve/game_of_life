@@ -5,7 +5,7 @@
 ** Login esceve <clement.scherpereel@outlook.fr>
 ** 
 ** Started on  Fri May 27 10:58:51 2016 Clement Scherpereel
-** Last update Sat May 28 15:32:36 2016 Clement Scherpereel
+** Last update Sat May 28 18:20:50 2016 Clement Scherpereel
 */
 
 #include	<stdlib.h>
@@ -46,6 +46,7 @@ int		main(void)
 {
   int		map[SIZE][SIZE];
   void		*context;
+  SDL_Event	event;
 
   if ((context = SDLContext_init("Jeu de la vie", WIDTH, HEIGHT)) != NULL)
     {
@@ -53,6 +54,13 @@ int		main(void)
       signal(SIGINT, sighandler);
       while (running == 1 && test_end_game(map) != 0)
 	{
+	  if (SDL_PollEvent(&event))
+	    {
+	      if (event.type == SDL_QUIT)
+		running = 0;
+	      else if (event.type == SDL_WINDOWEVENT)
+		SDLContext_windowevent(context, &event);
+	    }
 	  display_map(map);
 	  printf("\nCellule viviantes : %d\n", test_end_game(map));
 	  test_cells(map);
