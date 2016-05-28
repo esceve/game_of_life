@@ -5,7 +5,7 @@
 ** Login   <guerin_q@epitech.net>
 ** 
 ** Started on  Sat May 28 13:59:23 2016 Quentin Guerin
-** Last update Sat May 28 14:48:28 2016 Quentin Guerin
+** Last update Sat May 28 19:10:57 2016 Clement Scherpereel
 */
 
 #include	<stdlib.h>
@@ -22,7 +22,7 @@ void		create_map(int tab[SIZE][SIZE])
     {
       for (j = 0; j < SIZE; j++)
 	{
-	  if (rand() % 100 < 15)
+	  if (rand() % 100 < 20)
 	    tab[i][j] = 1;
 	  else
 	    tab[i][j] = 0;

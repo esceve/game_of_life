@@ -5,7 +5,7 @@
 ** Login   <guerin_q@epitech.net>
 ** 
 ** Started on  Sat May 28 14:01:34 2016 Quentin Guerin
-** Last update Sat May 28 14:58:24 2016 Quentin Guerin
+** Last update Sat May 28 18:34:15 2016 Clement Scherpereel
 */
 
 #include	<stdlib.h>

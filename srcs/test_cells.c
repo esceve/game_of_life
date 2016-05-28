@@ -5,7 +5,7 @@
 ** Login   <guerin_q@epitech.net>
 ** 
 ** Started on  Sat May 28 14:04:27 2016 Quentin Guerin
-** Last update Sat May 28 14:48:09 2016 Quentin Guerin
+** Last update Sat May 28 20:00:42 2016 Clement Scherpereel
 */
 
 #include	"create_map.h"
@@ -53,9 +53,12 @@ void		test_cells(int tab[SIZE][SIZE])
 	{
 	  neighbours = count_neighbours(tab, i, j);
 	  if (neighbours == 3)
-	    tab[i][j] = 1;
-/*	  if (neighbours == 2)
-	    tab[i][j] = tab[i][j];*/
+	    {
+	      if(tab[i][j] == 0)
+	        {
+	          tab[i][j] = 1;
+	        }
+	    }
 	  if (neighbours < 2)
 	    tab[i][j] = 0;
 	  if (neighbours > 3)
