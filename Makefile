@@ -5,7 +5,7 @@
 ## Login esceve <clement.scherpereel@outlook.fr>
 ## 
 ## Started on  Thu May 12 23:11:11 2016 Clement Scherpereel
-## Last update Sat May 28 11:01:58 2016 Clement Scherpereel
+## Last update Sat May 28 11:33:05 2016 Quentin Guerin
 ##
 
 # Variable de Debug pour ajouter des flags (pour debugger)
@@ -27,7 +27,7 @@ ifeq ($(DEBUG), 1)
 endif
 
 # Flags de linkage
-LDFLAGS			+= -L./libraries/
+LDFLAGS			+= -L./libraries/ -lSDL2 -lsdl_context
 
 # Binary name
 NAME			=game_of_life.x86_64
