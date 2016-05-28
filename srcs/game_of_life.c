@@ -5,14 +5,14 @@
 ** Login esceve <clement.scherpereel@outlook.fr>
 ** 
 ** Started on  Fri May 27 10:58:51 2016 Clement Scherpereel
-** Last update Sat May 28 11:46:23 2016 Clement Scherpereel
+** Last update Sat May 28 13:39:10 2016 Clement Scherpereel
 */
 
 #include		<stdlib.h>
 #include		<stdio.h>
 #include		<time.h>
 #include		<unistd.h>
-#define			v 50
+#define			v 25
 
 
 void create_map(int map[v][v]);
@@ -31,7 +31,7 @@ int		main(void)
     printf("\nCellule viviantes : %d\n", test_end_game(map));
     test_cellule(map);
 //œ    test_end_game(map);
-    usleep(10000);
+    usleep(50000);
     }
     afficher_map(map);
     printf("FIN DU JEUX TOUT LE MONDE EST MORT\n\n");
@@ -48,7 +48,7 @@ void		create_map( int tab[v][v] )
       {
 	for( j = 0; j < v; j++ )
 	  {
-	    if(rand()%100<20)
+	    if(rand()%100<15)
 	      {
 		tab[i][j] = 1;
 	      }
@@ -131,7 +131,7 @@ void		test_cellule(int tab[v][v])
             //bas gauche
             if(i > 0 && j < v - 1 && tab[i-1][j+1]==1)
 	      voisin++;
-	    if( voisin == 3 && tab[i][j] == 0 )
+	    if( voisin == 3 )
 	      {
 		tab[i][j]=1;
 	      }
@@ -147,6 +147,7 @@ void		test_cellule(int tab[v][v])
 	      {
 		tab[i][j]=0;
 	      }
+	
 	  }
       }
   }
