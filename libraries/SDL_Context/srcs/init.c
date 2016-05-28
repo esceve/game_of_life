@@ -5,10 +5,9 @@
 ** Login   <guerin_q@epitech.net>
 ** 
 ** Started on  Sat May 28 10:27:06 2016 Quentin Guerin
-** Last update Sat May 28 11:29:28 2016 Quentin Guerin
+** Last update Sat May 28 11:49:35 2016 Quentin Guerin
 */
 
-#include	<SDL2/SDL.h>
 #include	"SDLContext.h"
 
 void		*SDLContext_init(char *window_title, int width, int height)
@@ -25,6 +24,10 @@ void		*SDLContext_init(char *window_title, int width, int height)
 					      SDL_WINDOW_HIDDEN)) != NULL) {
 	if ((context->renderer = SDL_CreateRenderer(context->window, -1,
 						    SDL_RENDERER_ACCELERATED)) != NULL) {
+	  context->width = width;
+	  context->height = height;
+	  context->x = 0;
+	  context->y = 0;
 	  return (context);
 	}
       }

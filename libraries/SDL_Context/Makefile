@@ -5,7 +5,7 @@
 ## Login   <guerin_q@epitech.net>
 ## 
 ## Started on  Sat May 28 10:20:51 2016 Quentin Guerin
-## Last update Sat May 28 11:30:11 2016 Quentin Guerin
+## Last update Sat May 28 11:49:58 2016 Quentin Guerin
 ##
 
 AR			= ar
@@ -28,6 +28,7 @@ ARFLAGS			+=  -rcs
 NAME			= ../libsdl_context.a
 
 SRCS			= ./srcs/init.c			\
+			  ./srcs/set_map_size.c		\
 
 OBJS			= $(SRCS:.c=.o)
 
