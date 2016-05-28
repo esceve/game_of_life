@@ -1,11 +1,11 @@
 /*
 ** game_of_life.c for game_of_life in /home/esceve/Documents/C/game_of_life
-** 
+**
 ** Made by Clement Scherpereel
 ** Login esceve <clement.scherpereel@outlook.fr>
-** 
+**
 ** Started on  Fri May 27 10:58:51 2016 Clement Scherpereel
-** Last update Sat May 28 18:20:50 2016 Clement Scherpereel
+** Last update Sat May 28 23:25:39 2016 Clement Scherpereel
 */
 
 #include	<stdlib.h>
