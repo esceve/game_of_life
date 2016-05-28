@@ -5,26 +5,23 @@
 ** Login esceve <clement.scherpereel@outlook.fr>
 **
 ** Started on  Fri May 27 10:58:51 2016 Clement Scherpereel
+<<<<<<< HEAD
 ** Last update Sat May 28 23:25:39 2016 Clement Scherpereel
+=======
+** Last update Sat May 28 21:20:23 2016 Quentin Guerin
+>>>>>>> 59515082b54718eacdb5523f359a28db9b47466d
 */
 
+#include	<time.h>
 #include	<stdlib.h>
 #include	<stdio.h>
 #include	<unistd.h>
 #include	<signal.h>
-#include	"SDLContext.h"
 #include	"constants.h"
+#include	"SDLContext.h"
 #include	"create_map.h"
 #include	"test_cells.h"
 #include	"display_map.h"
-
-int		running = 1;
-
-void		sighandler(int a)
-{
-  (void)a;
-  running = 0;
-}
 
 int		test_end_game(int tab[SIZE][SIZE])
 {
@@ -42,18 +39,38 @@ int		test_end_game(int tab[SIZE][SIZE])
   return (verif);
 }
 
-int		main(void)
+int			main(void)
 {
-  int		map[SIZE][SIZE];
-  void		*context;
-  SDL_Event	event;
+  int			map[SIZE][SIZE];
+  void			*context;
+  SDL_Event		event;
+  int			running;
+  struct timespec	now;
+  struct timespec	now_tmp;
+  size_t		accum;
 
   if ((context = SDLContext_init("Jeu de la vie", WIDTH, HEIGHT)) != NULL)
     {
+      running = 1;
+      SDLContext_initscreen(context);
       create_map(map);
-      signal(SIGINT, sighandler);
+      SDLContext_setmapsize(context, SIZE, SIZE);
+      clock_gettime(CLOCK_MONOTONIC, &now);
       while (running == 1 && test_end_game(map) != 0)
 	{
+	  clock_gettime(CLOCK_MONOTONIC, &now_tmp);
+	  accum = ((now_tmp.tv_sec - now.tv_sec) * 1000000000);
+	  accum += (now_tmp.tv_nsec - now.tv_nsec);
+	  if (((double)(accum) / 1000000000) > SLEEP_DURATION)
+	    {
+	      now.tv_sec = now_tmp.tv_sec;
+	      now.tv_nsec = now_tmp.tv_nsec;
+	      SDLContext_loadmap(context, (int*)map);
+	  //    display_map(map);
+	      SDLContext_display(context);
+	  //    printf("\nCellule viviantes : %d\n", test_end_game(map));
+	      test_cells(map);
+	    }
 	  if (SDL_PollEvent(&event))
 	    {
 	      if (event.type == SDL_QUIT)
@@ -61,11 +78,6 @@ int		main(void)
 	      else if (event.type == SDL_WINDOWEVENT)
 		SDLContext_windowevent(context, &event);
 	    }
-	  display_map(map);
-	  printf("\nCellule viviantes : %d\n", test_end_game(map));
-	  test_cells(map);
-//	  test_end_game(map);
-	  usleep(SLEEP_DURATION);
 	}
       if (running == 1)
 	{

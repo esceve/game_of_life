@@ -5,7 +5,7 @@
 ## Login esceve <clement.scherpereel@outlook.fr>
 ## 
 ## Started on  Thu May 12 23:11:11 2016 Clement Scherpereel
-## Last update Sat May 28 19:11:38 2016 Clement Scherpereel
+## Last update Sat May 28 23:27:06 2016 Clement Scherpereel
 ##
 
 DEBUG			= 0
@@ -21,7 +21,7 @@ ifeq ($(DEBUG), 1)
 	CFLAGS		+= -g3 -D _DEBUG
 endif
 
-LDFLAGS			+= -L./libraries/ -lSDL2 -lsdl_context
+LDFLAGS			+= -L./libraries/ -lSDL2 -lSDL2_image -lsdl_context
 
 NAME			=game_of_life.x86_64
 
