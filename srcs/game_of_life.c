@@ -5,7 +5,7 @@
 ** Login esceve <clement.scherpereel@outlook.fr>
 ** 
 ** Started on  Fri May 27 10:58:51 2016 Clement Scherpereel
-** Last update Sat May 28 11:12:32 2016 Quentin Guerin
+** Last update Sat May 28 11:46:23 2016 Clement Scherpereel
 */
 
 #include		<stdlib.h>
@@ -28,10 +28,10 @@ int		main(void)
     while(test_end_game(map) != 0)
     {
     afficher_map(map);
-    printf("\ntest : %d\n", test_end_game(map));
+    printf("\nCellule viviantes : %d\n", test_end_game(map));
     test_cellule(map);
 //œ    test_end_game(map);
-    usleep(1000);
+    usleep(10000);
     }
     afficher_map(map);
     printf("FIN DU JEUX TOUT LE MONDE EST MORT\n\n");
@@ -131,6 +131,22 @@ void		test_cellule(int tab[v][v])
             //bas gauche
             if(i > 0 && j < v - 1 && tab[i-1][j+1]==1)
 	      voisin++;
+	    if( voisin == 3 && tab[i][j] == 0 )
+	      {
+		tab[i][j]=1;
+	      }
+	    if( voisin == 2 )
+	      {
+		tab[i][j]=tab[i][j];
+	      }
+	    if( voisin < 2 )
+	      {
+		tab[i][j]=0;
+	      }
+	    if( voisin > 3 )
+	      {
+		tab[i][j]=0;
+	      }
 	  }
       }
   }

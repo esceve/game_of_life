@@ -5,7 +5,7 @@
 ## Login esceve <clement.scherpereel@outlook.fr>
 ## 
 ## Started on  Thu May 12 23:11:11 2016 Clement Scherpereel
-## Last update Sat May 28 11:33:05 2016 Quentin Guerin
+## Last update Sat May 28 11:46:10 2016 Clement Scherpereel
 ##
 
 # Variable de Debug pour ajouter des flags (pour debugger)
@@ -39,7 +39,10 @@ SRCS			= ./srcs/game_of_life.c					\
 OBJS			= $(SRCS:.c=.o)
 
 # Regle principale (appellée en tapant `Make`)
-all:			$(NAME)
+all:			library $(NAME)
+
+library:
+			make -C ./libraries/SDL_Context/
 
 # Regle de compilation du binaire:
 # 1. Passage de C à Assembleur
@@ -50,10 +53,13 @@ $(NAME):		$(OBJS)
 # Regle pour supprimer les .o (Assembleur)
 clean:
 			$(RM) $(OBJS)
+			make clean -C ./libraries/SDL_Context/
 
 # Regle pour supprimer le binaire et les .o (Assembleur)
-fclean:			clean
+fclean:
+			$(RM) $(OBJS)
 			$(RM) $(NAME)
+			make fclean -C ./libraries/SDL_Context/
 
 # Regle pour refaire le binaire
 # 1. Suppression de la derniere compilation
@@ -61,4 +67,4 @@ fclean:			clean
 re:			fclean all
 
 # Declaration des regles pour qu'elles soient reconnues
-.PHONY:			all clean fclean re
+.PHONY:			all library clean fclean re
