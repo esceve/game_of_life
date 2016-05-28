@@ -5,10 +5,23 @@
 ** Login   <guerin_q@epitech.net>
 ** 
 ** Started on  Sat May 28 10:27:06 2016 Quentin Guerin
-** Last update Sat May 28 17:59:20 2016 Quentin Guerin
+** Last update Sat May 28 21:11:29 2016 Quentin Guerin
 */
 
-#include	"SDLContext.h"
+#include		"SDLContext.h"
+
+SDL_Surface		*img1 = NULL;
+SDL_Surface		*img2 = NULL;
+SDL_Surface		*img3 = NULL;
+
+void			SDLContext_initscreen(void *context_ptr)
+{
+  struct SDLContext	*context;
+
+  context = context_ptr;
+  SDL_FillRect(context->screen, NULL, 0x00000000);
+  SDL_FillRect(context->map, NULL, 0x00000000);
+}
 
 void		*SDLContext_init(char *window_title, int width, int height)
 {
@@ -16,6 +29,13 @@ void		*SDLContext_init(char *window_title, int width, int height)
 
   if ((context = malloc(sizeof(struct SDLContext))) == NULL)
     return (NULL);
+  context->x = 0;
+  context->y = 0;
+  context->map = NULL;
+  context->screen = NULL;
+  context->screen_texture = NULL;
+  context->focus[0] = 0;
+  context->focus[1] = 0;
   if (SDL_Init(SDL_INIT_VIDEO) == 0)
     {
       if ((context->window = SDL_CreateWindow(window_title, SDL_WINDOWPOS_UNDEFINED,
@@ -25,9 +45,10 @@ void		*SDLContext_init(char *window_title, int width, int height)
 						    SDL_RENDERER_ACCELERATED)) != NULL) {
 	  context->width = width;
 	  context->height = height;
-	  context->x = 0;
-	  context->y = 0;
-	  return (context);
+	  if ((context->screen = SDL_CreateRGBSurface(0, width, height, 32,
+						      RMASK, GMASK, BMASK,
+						      AMASK)) != NULL)
+	    return (context);
 	}
       }
     }
