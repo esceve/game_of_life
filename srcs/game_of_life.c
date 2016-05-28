@@ -5,7 +5,7 @@
 ** Login esceve <clement.scherpereel@outlook.fr>
 ** 
 ** Started on  Fri May 27 10:58:51 2016 Clement Scherpereel
-** Last update Sat May 28 10:59:37 2016 Clement Scherpereel
+** Last update Sat May 28 11:12:32 2016 Quentin Guerin
 */
 
 #include		<stdlib.h>
@@ -100,7 +100,6 @@ void		test_cellule(int tab[v][v])
   {
     int		i;
     int		j;
-    int		toto;
     int		voisin;
 
     for( i = 0; i < v; i++ )
